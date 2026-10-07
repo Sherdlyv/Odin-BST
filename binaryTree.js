@@ -1,3 +1,4 @@
+import { act } from "react";
 
 class Node {
     constructor(data) {
@@ -138,6 +139,42 @@ class Tree {
 
         return root;
     }
+
+
+    levelOrder(callBack) {
+
+        if (actual === null) return actual ;
+
+        let result = [];
+
+        let queue = [];
+
+        queue.push(this.root);
+
+        while (queue.length > 0) {
+            let actual = queue.shift();
+             
+            if (callBack) {
+            callBack(actual.data);
+            } else {
+            result.push(actual.data); 
+             }
+
+             if (actual.left !== null) {
+                queue.push(actual.left);
+             }
+
+             if (actual.right !== null) {
+                queue.push(actual.right);
+
+             }
+        }
+
+        if (!callBack) return result;       
+
+        
+    }
+
 
 
 

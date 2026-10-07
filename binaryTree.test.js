@@ -57,6 +57,19 @@ describe('Binary Search Tree - Initial Setup & Root Building', () => {
     expect(tree.includes(10)).toBe(false);
   });
 
+    test(' (levelOrder)', () => {
+    const unsortedArray = [1, 7, 4, 20, 10, 15, 5, 5];
+    const tree = new Tree(unsortedArray);
+
+    // Sans callback, la méthode doit renvoyer le tableau rangé par étages
+    const breadthList = tree.levelOrder();
+    
+    // Étage 1 : 10 | Étage 2 : 4, 15 | Étage 3 : 1, 7, 20 (selon le tri de l'arbre équilibré)
+    expect(breadthList[0]).toBe(10); 
+    expect(breadthList.length).toBe(6); // 6 éléments uniques après nettoyage du Set
+  });
+
+
 
 
 });
