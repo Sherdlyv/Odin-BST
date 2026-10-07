@@ -99,6 +99,50 @@ class Tree {
         }
 
 
+         deleteItem(value) {
+              this.root = this._deleteNode(this.root, value);
+        }
+
+             _deleteNode(root, value) {
+        
+        if (root === null) return root;
+
+        
+        if (value < root.data) {
+            root.left = this._deleteNode(root.left, value);
+            return root;
+        } else if (value > root.data) {
+            root.right = this._deleteNode(root.right, value);
+            return root;
+        }
+        
+        if (root.left === null) {
+            return root.right; 
+        } else if (root.right === null) {
+            return root.left;  
+        }
+
+        let succParent = root;
+        let succ = root.right;
+        while (succ.left !== null) {
+            succParent = succ;
+            succ = succ.left;
+        }     
+        root.data = succ.data;
+     
+        if (succParent !== root) {
+            succParent.left = succ.right;
+        } else {
+            succParent.right = succ.right;
+        }
+
+        return root;
+    }
+
+
+
+
+
 
 
 }

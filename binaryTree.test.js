@@ -43,6 +43,20 @@ describe('Binary Search Tree - Initial Setup & Root Building', () => {
     expect(tree.includes(3)).toBe(true);
   });
 
+    test('Delete value from tree (deleteItem)', () => {
+    
+    const unsortedArray =[1, 7, 4, 20, 10, 15, 5, 5];
+    const tree = new Tree(unsortedArray);
+
+    expect(tree.includes(7)).toBe(true);
+    tree.deleteItem(7);
+    expect(tree.includes(7)).toBe(false);
+
+    expect(tree.includes(10)).toBe(true);
+    tree.deleteItem(10);
+    expect(tree.includes(10)).toBe(false);
+  });
+
 
 
 });
