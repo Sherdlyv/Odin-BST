@@ -61,12 +61,52 @@ describe('Binary Search Tree - Initial Setup & Root Building', () => {
     const unsortedArray = [1, 7, 4, 20, 10, 15, 5, 5];
     const tree = new Tree(unsortedArray);
 
-    // Sans callback, la méthode doit renvoyer le tableau rangé par étages
     const breadthList = tree.levelOrder();
     
-    // Étage 1 : 10 | Étage 2 : 4, 15 | Étage 3 : 1, 7, 20 (selon le tri de l'arbre équilibré)
-    expect(breadthList[0]).toBe(10); 
-    expect(breadthList.length).toBe(6); // 6 éléments uniques après nettoyage du Set
+    expect(breadthList[0]).toBe(7); 
+    expect(breadthList.length).toBe(7); 
+  });
+
+    test('devrait executer les parcours DFS dans le bon ordre (pre, in, post)', () => {
+    const unsortedArray = [1, 7, 4, 20, 10, 15, 5, 5];
+    const tree = new Tree(unsortedArray);
+    
+    expect(tree.inOrder()).toEqual([1, 4, 5, 7, 10, 15, 20]);
+    
+    expect(tree.preOrder()[0]).toBe(7);
+ 
+    const postList = tree.postOrder();
+    expect(postList[postList.length - 1]).toBe(7);
+  });
+
+    test(' (height)', () => {
+   
+    const unsortedArray =[1, 7, 4, 20, 10, 15, 5, 5];
+    const tree = new Tree(unsortedArray);
+
+    
+    expect(tree.height(tree.root)).toBeGreaterThanOrEqual(2);
+
+   
+    let leaf = tree.root.left;
+    while (leaf.left !== null || leaf.right !== null) {
+        leaf = leaf.left !== null ? leaf.left : leaf.right;
+    }
+    expect(tree.height(leaf)).toBe(0);
+  });
+
+
+  test(' (depth)', () => {
+    
+    const unsortedArray =[1, 7, 4, 20, 10, 15, 5, 5];
+    const tree = new Tree(unsortedArray);
+
+    
+    expect(tree.depth(tree.root)).toBe(0);
+
+    if (tree.root.left !== null) {
+        expect(tree.depth(tree.root.left)).toBe(1);
+    }
   });
 
 

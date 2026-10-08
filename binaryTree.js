@@ -1,4 +1,3 @@
-import { act } from "react";
 
 class Node {
     constructor(data) {
@@ -142,6 +141,7 @@ class Tree {
 
 
     levelOrder(callBack) {
+        let actual =this.root;
 
         if (actual === null) return actual ;
 
@@ -157,7 +157,8 @@ class Tree {
             if (callBack) {
             callBack(actual.data);
             } else {
-            result.push(actual.data); 
+            result.push(actual.data);
+            
              }
 
              if (actual.left !== null) {
@@ -176,13 +177,108 @@ class Tree {
     }
 
 
+    inOrder(callBack) {
+    let arr = [];
 
+    function traverse(node) {
+        if (node === null) return; 
 
+        traverse(node.left);
 
+        if (callBack) {
+            callBack(node.data);
+        } else {
+            arr.push(node.data); 
+        }
+  
+        traverse(node.right);
+    }
+
+    
+    traverse(this.root);
+
+    
+    if (!callBack) return arr;
+}
+
+preOrder(callBack) {
+    let arr = [];
+
+    function traverse(node) {
+        if (node === null) return;
+
+        if (callBack) {
+            callBack(node.data);
+        } else {
+            arr.push(node.data);
+        }
+
+        traverse(node.left);
+
+        
+        traverse(node.right);
+    }
+
+    traverse(this.root);
+    if (!callBack) return arr;
+}
+
+postOrder(callBack) {
+    let arr = [];
+
+    function traverse(node) {
+        if (node === null) return;
+
+       
+       traverse(node.left);
+
+       traverse(node.right);
+
+        if (callBack) {
+            callBack(node.data);
+        } else {
+            arr.push(node.data);
+        }
+    }
+
+    traverse(this.root);
+    if (!callBack) return arr;
+}
+
+height(value) {
+    if (value === null) return -1;
+
+    let leftHeight = this.height(value.left);
+    let rightHeight = this.height(value.right);
+
+    return 1 + Math.max(leftHeight, rightHeight);
+
+}
+
+depth(value) {
+        if (value === null) return -1;
+        return this._getDepth(this.root, value, 0);
+    }
+
+    _getDepth(current, target, currentDepth) {
+        
+        if (current === null) return -1;
+
+        
+        if (current.data === target.data) return currentDepth;
+
+        if (target.data < current.data) {
+            return this._getDepth(current.left, target, currentDepth + 1);
+        } else {
+            return this._getDepth(current.right, target, currentDepth + 1);
+        }
+    }
 
 
 
 }
+
+
 
 export { Node };
 export { Tree };
