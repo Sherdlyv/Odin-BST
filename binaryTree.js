@@ -292,6 +292,13 @@ depth(value) {
         return false;
     }
 
+        rebalance() {
+      
+        let sortedArray = this.inOrder();
+       
+        this.root = this.buildTree(sortedArray);
+    }
+
 
 
 }

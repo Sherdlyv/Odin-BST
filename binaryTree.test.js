@@ -126,6 +126,22 @@ describe('Binary Search Tree - Initial Setup & Root Building', () => {
     expect(tree.isBalanced()).toBe(false);
   });
 
+    test('devrait reequilibrer un arbre tordu (rebalance)', () => {
+    const unsortedArray =[1,7,4,20,10,15,5,5];
+    const tree = new Tree(unsortedArray);
+
+    
+    tree.insert(30);
+    tree.insert(40);
+    tree.insert(50);
+    expect(tree.isBalanced()).toBe(false);
+
+    tree.rebalance();
+
+    
+    expect(tree.isBalanced()).toBe(true);
+  });
+
 
 
 });
