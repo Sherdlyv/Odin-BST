@@ -72,7 +72,7 @@ describe('Binary Search Tree - Initial Setup & Root Building', () => {
     const tree = new Tree(unsortedArray);
     
     expect(tree.inOrder()).toEqual([1, 4, 5, 7, 10, 15, 20]);
-    
+
     expect(tree.preOrder()[0]).toBe(7);
  
     const postList = tree.postOrder();
@@ -109,6 +109,22 @@ describe('Binary Search Tree - Initial Setup & Root Building', () => {
     }
   });
 
+
+    test('devrait verifier si l-arbre est equilibre (isBalanced)', () => {
+    const unsortedArray =[1, 7, 4, 20, 10, 15, 5, 5];
+    const tree = new Tree(unsortedArray);
+
+    
+    expect(tree.isBalanced()).toBe(true);
+
+   
+    tree.insert(30);
+    tree.insert(40);
+    tree.insert(50);
+
+
+    expect(tree.isBalanced()).toBe(false);
+  });
 
 
 
